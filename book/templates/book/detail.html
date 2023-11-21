@@ -1,0 +1,29 @@
+{% extends 'core/base.html'%}
+
+{%block title%} {{book.title}} {%endblock%}
+
+{%block content%}
+<div class="grid grid-cols-6 gap-6">
+    <div class="col-span-1">
+        <img src="{{book.cover_url}}" alt="{{book.title}}" class="w-full">
+    </div>
+
+    <div class="col-span-5 p-6 bg-gray-100 rounded-xl">
+        <h1 class="mb-6 text-3xl">{{book.title}}</h1>
+        <h2 class="mb-6 text-xl">By <strong>{{book.author}}</strong></h2>
+        <p class="mb-4">{{book.description}}</p>
+    </div>
+    <div class="col-span-6 p-6 bg-gray-100 rounded-xl mt-3">
+        <h1>Other books by {{book.author}}</h1>
+        <div class="grid grid-cols-6 gap-6">
+            {% for book in authors_other_books %}
+            <div class="p-6 bg-white rounded-xl">
+                <a href="{% url 'book:detail' book.id %}">
+                    <img src="{{book.cover_url}}" alt="{{book.title}}" class="w-full">
+                </a>
+                <h1 class="mt-4 mb-2 text-xl">{{book.title}}</h1>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {%endblock%}

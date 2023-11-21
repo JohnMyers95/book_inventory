@@ -1,0 +1,46 @@
+{% extends 'core/base.html'%}
+
+{%block title%} Search {%endblock%}
+
+{%block content%}
+<div class="grid grid-cols-5 gap-6 bg-gray-100 rounded-xl">
+    <table class="col-span-5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-5">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">Cover</th>
+                <th scope="col" class="px-6 py-3">Title</th>
+                <th scope="col" class="px-6 py-3">Author</th>
+                <th scope="col" class="px-6 py-3">Date Published</th>
+                <th scope="col" class="px-6 py-3">Description</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr
+                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <td class="px-6 py-4">
+                    <a href="{% url 'book:detail' book.id%}">
+                        <img class="h-20 object-cover" src="{{book.cover_url}}" alt="{{book.title}}">
+                    </a>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'book:detail' book.id %}">{{book.title}}</a>
+                </td>
+                <td class="px-6 py-4">{{book.author}}</td>
+                <td class="px-6 py-4">{{book.published_date}}</td>
+                <td class="px-6 py-4 text-ellipsis overflow-hidden">{{book.description}}</td>
+                <td class="px-6 py-4 ">
+                    <div class="grid grid-cols-2 gap-2 justify-center items-center">
+                        <a href="/books/{{book.id}}/edit">Edit</a>
+                        <a onclick="DeleteBook({{book.id}})">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% load static %}
+<script src="{% static 'BookFuncs.js' %}"></script>
+{%endblock%}

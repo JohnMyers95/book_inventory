@@ -1,0 +1,29 @@
+{% extends 'core/base.html'%}
+
+{%block title%} Add Book {%endblock%}
+
+{%block content%}
+<div class="w-full">
+    <form action="/books/add/" method="post" class="bg-grey rounded px-8 pt-6 pb-8 mb-4">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="flex justify-center m-5 gap-5 items-center">
+            <button
+                class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Back</button>
+            <input type="submit" value="Add" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold
+                py-2 px-4 rounded">
+            <a href="#" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                Reset
+            </a>
+        </div>
+    </form>
+</div>
+{%endblock%}
