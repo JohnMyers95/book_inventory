@@ -14,6 +14,15 @@
 
 ### Getting Started
 
+- create .env file inside book_inventory/ -- See below for sample
 - makemigrations
 - migrate
 - runserver
+
+```
+SECRET_KEY=
+DB_NAME=
+DB_USER=
+DB_PASS=
+ENVIRONMENT=development
+```
