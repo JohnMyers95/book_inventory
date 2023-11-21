@@ -19,6 +19,8 @@
 - migrate
 - runserver
 
+I have commited the sqlite database for seed data/ demo purposes
+
 ### Sample env file
 
 ```
