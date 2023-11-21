@@ -19,6 +19,8 @@
 - migrate
 - runserver
 
+### Sample env file
+
 ```
 SECRET_KEY=
 DB_NAME=
