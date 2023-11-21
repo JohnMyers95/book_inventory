@@ -27,4 +27,5 @@ DB_NAME=
 DB_USER=
 DB_PASS=
 ENVIRONMENT=development
+DJANGO_DEBUG=True
 ```
