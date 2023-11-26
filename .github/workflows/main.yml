@@ -4,6 +4,10 @@ jobs:
   test_project:
     runs-on: ubuntu-latest # operating system your code will run on
     environment: testing
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ENVIRONMENT: "Development"
+      DJANGO_DEBUG: "True"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
