@@ -1,5 +1,6 @@
 from django import forms
 from .models import Book
+from category.models import Category
 
 
 class BookForm(forms.ModelForm):
@@ -12,6 +13,7 @@ class BookForm(forms.ModelForm):
             "isbn",
             "description",
             "cover_url",
+            "category",
         ]
 
     title = forms.CharField(
@@ -59,6 +61,15 @@ class BookForm(forms.ModelForm):
     cover_url = forms.CharField(
         max_length=255,
         widget=forms.TextInput(
+            attrs={
+                "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+            }
+        ),
+    )
+
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.Select(
             attrs={
                 "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             }

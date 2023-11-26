@@ -9,6 +9,9 @@ class Book(models.Model):
     isbn = models.CharField(max_length=13)
     description = models.TextField()
     cover_url = models.CharField(max_length=255)
+    category = models.ForeignKey(
+        "category.Category", on_delete=models.CASCADE, related_name="books"
+    )
 
     def __str__(self):
         return self.title
