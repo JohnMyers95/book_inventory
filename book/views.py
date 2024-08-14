@@ -13,12 +13,17 @@ def detail(request, pk):
     else:
         book = get_object_or_404(Book, pk=pk)
         authors_other_books = Book.objects.filter(author=book.author).exclude(pk=pk)[
-            0:6
+            0:3
         ]
+        same_category_books = Book.objects.filter(category=book.category)[0:3]
         return render(
             request,
             "book/detail.html",
-            {"book": book, "authors_other_books": authors_other_books},
+            {
+                "book": book,
+                "authors_other_books": authors_other_books,
+                "same_category_books": same_category_books,
+            },
         )
 
 
